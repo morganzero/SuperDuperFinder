@@ -9,6 +9,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             var socket = io();
             socket.on('new_output', function (msg) {
+                console.log("Received message:", msg.data);
                 var outputDiv = document.getElementById('output');
                 outputDiv.innerHTML += msg.data + "<br>";
             });
