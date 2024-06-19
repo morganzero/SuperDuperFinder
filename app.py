@@ -2,10 +2,14 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 import subprocess
 import threading
+import logging
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode='eventlet')
+
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
 
 def run_script():
     process = subprocess.Popen(
@@ -15,7 +19,9 @@ def run_script():
         text=True,
         bufsize=1
     )
+    logging.info("Started dupefinder.py script")
     for stdout_line in iter(process.stdout.readline, ""):
+        logging.info("Script output: %s", stdout_line.strip())
         socketio.emit('new_output', {'data': stdout_line})
         socketio.sleep(0)
     process.stdout.close()
