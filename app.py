@@ -26,6 +26,7 @@ def run_script():
         socketio.sleep(0)
     process.stdout.close()
     process.wait()
+    logging.info("Script finished")
 
 @app.route('/')
 def index():
@@ -35,6 +36,7 @@ def index():
 def run():
     thread = threading.Thread(target=run_script)
     thread.start()
+    logging.info("Script thread started")
     return "Script started"
 
 if __name__ == '__main__':
