@@ -5,7 +5,7 @@ import threading
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='eventlet')
 
 def run_script():
     process = subprocess.Popen(
