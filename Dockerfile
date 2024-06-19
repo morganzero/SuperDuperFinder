@@ -16,5 +16,5 @@ RUN python generate_config.py
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
-# Run Flask when the container launches
+# Run Flask-SocketIO when the container launches
 CMD ["python", "app.py"]
