@@ -1,8 +1,8 @@
-plexapi
-tabulate
-requests
-attrdict
 Flask
 flask_socketio
 gunicorn
 eventlet
+plexapi
+requests
+attrdict
+tabulate
