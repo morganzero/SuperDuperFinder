@@ -4,3 +4,4 @@ requests
 attrdict
 Flask
 flask_socketio
+gunicorn
