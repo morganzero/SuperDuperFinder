@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Dupefinder</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
             var socket = io();
             socket.on('new_output', function (msg) {
                 var outputDiv = document.getElementById('output');
                 outputDiv.innerHTML += msg.data + "<br>";
             });
-        });
 
-        function runScript() {
-            fetch('/run')
-                .then(response => response.text())
-                .then(data => console.log(data));
-        }
+            document.getElementById('runButton').addEventListener('click', function () {
+                fetch('/run')
+                    .then(response => response.text())
+                    .then(data => console.log(data));
+            });
+        });
     </script>
 </head>
 <body>
     <h1>Dupefinder</h1>
-    <button onclick="runScript()">Run Script</button>
+    <button id="runButton">Run Script</button>
     <div id="output"></div>
 </body>
 </html>
