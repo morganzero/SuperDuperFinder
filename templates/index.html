@@ -1,21 +1,29 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Dupefinder UI</title>
-  </head>
-  <body>
+    <title>Dupefinder</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("DOMContentLoaded", function () {
+            var socket = io();
+            socket.on('new_output', function (msg) {
+                var outputDiv = document.getElementById('output');
+                outputDiv.innerHTML += msg.data + "<br>";
+            });
+        });
+
+        function runScript() {
+            fetch('/run')
+                .then(response => response.text())
+                .then(data => console.log(data));
+        }
+    </script>
+</head>
+<body>
     <h1>Dupefinder</h1>
     <button onclick="runScript()">Run Script</button>
     <div id="output"></div>
-
-    <script>
-      function runScript() {
-        fetch('/run')
-          .then(response => response.text())
-          .then(data => document.getElementById('output').innerHTML = data);
-      }
-    </script>
-  </body>
+</body>
 </html>
