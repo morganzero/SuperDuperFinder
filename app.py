@@ -17,6 +17,7 @@ def run_script():
     )
     for stdout_line in iter(process.stdout.readline, ""):
         socketio.emit('new_output', {'data': stdout_line})
+        socketio.sleep(0)
     process.stdout.close()
     process.wait()
 
