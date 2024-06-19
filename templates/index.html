@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dupefinder UI</title>
+  </head>
+  <body>
+    <h1>Dupefinder</h1>
+    <button onclick="runScript()">Run Script</button>
+    <div id="output"></div>
+
+    <script>
+      function runScript() {
+        fetch('/run')
+          .then(response => response.text())
+          .then(data => document.getElementById('output').innerHTML = data);
+      }
+    </script>
+  </body>
+</html>
