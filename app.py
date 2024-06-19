@@ -12,7 +12,8 @@ def run_script():
         ['python', 'dupefinder.py'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        text=True
+        text=True,
+        bufsize=1
     )
     for stdout_line in iter(process.stdout.readline, ""):
         socketio.emit('new_output', {'data': stdout_line})
